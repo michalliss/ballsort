@@ -1,5 +1,4 @@
-package domain.solver
-
+package ballsort.frontend.services.solver
 import scala.annotation.tailrec
 
 // https://gist.github.com/tyrcho/a2275da90788b3c0cd79
@@ -23,10 +22,9 @@ object Backtracking {
           case Rejected            =>
             solve(tail)
           case Undecided(children) =>
-            solve(children ::: tail)
+            solve(tail ::: children)
         }
       case Nil               => None
     }
   }
 }
-

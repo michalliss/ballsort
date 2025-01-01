@@ -19,7 +19,6 @@ trait AppScalaModule extends ScalaModule with ScalafixModule with ScalafmtModule
 trait AppScalaJSModule extends AppScalaModule with ScalaJSModule with ScalafixModule with ScalafmtModule {
   def scalaJSVersion = "1.17.0"
   def scalacOptions  = Seq("-Wunused:all")
-
 }
 
 object ballsort extends Module {
@@ -56,11 +55,16 @@ object ballsort extends Module {
         frontend_vite.millSourcePath / "app" / "main.js",
         replaceExisting = true
       )
-      os.copy(
-        jsPath / "main.js.map",
-        frontend_vite.millSourcePath / "app" / "main.js.map",
-        replaceExisting = true
-      )
+      // os.copy(
+      //   jsPath / "main.wasm",
+      //   frontend_vite.millSourcePath / "app" / "main.wasm",
+      //   replaceExisting = true
+      // )
+      // os.copy(
+      //   jsPath / "__loader.js",
+      //   frontend_vite.millSourcePath / "app" / "__loader.js",
+      //   replaceExisting = true
+      // )
     }
   }
 }

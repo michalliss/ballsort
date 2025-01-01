@@ -1,10 +1,10 @@
-package test
+package ballsort.frontend.test
 
-import domain.{Game}
-import domain.solver.BallSortSolver
 import zio.*
 import zio.test.*
 import zio.test.Assertion.*
+import ballsort.frontend.domain.Game
+import ballsort.frontend.services.SolverService
 
 object DomainTest extends ZIOSpecDefault {
   def spec = suite("Domain test")(
@@ -22,11 +22,6 @@ object DomainTest extends ZIOSpecDefault {
       val newGame = game.move(0, 1)
       assert(newGame)(isNone)
     },
-    // test("Solving sample game works") {
-    //   val game     = Game.sampleGame
-    //   val solution = BallSortSolver.solve(game)
-    //   assert(solution)(isSome)
-    // },
     test("Random games can be generated") {
       for {
         game <- Game.random(3, 5)
@@ -36,9 +31,8 @@ object DomainTest extends ZIOSpecDefault {
       for {
         _    <- Random.setSeed(2137)
         game <- Game.random(8, 6)
-        _     = println(game)
-        res   = BallSortSolver.solve(game)
+        res  <- ZIO.serviceWithZIO[SolverService](_.solveZIO(game))
       } yield assertTrue(res.isDefined)
     }
-  )
+  ).provide(ZLayer.derive[SolverService])
 }

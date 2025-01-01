@@ -1,6 +1,7 @@
 package ballsort.frontend
 
 import zio.*
+import ballsort.frontend.services.SolverService
 
 object Main extends ZIOAppDefault {
   def run = ZIO
@@ -8,6 +9,6 @@ object Main extends ZIOAppDefault {
     .provide(
       ZLayer.derive[App],
       ZLayer.derive[HomePage],
-      ZLayer.derive[HttpClient]
+      ZLayer.derive[SolverService]
     )
 }

@@ -1,4 +1,4 @@
-package domain
+package ballsort.frontend.domain
 import neotype.*
 
 type Color = Color.Type
