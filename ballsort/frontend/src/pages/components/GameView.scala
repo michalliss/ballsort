@@ -145,11 +145,10 @@ case class GameView(solverService: SolverService) {
         renderBoard(game, changes, onMoveObserver, colors)
       }),
       child <-- solution
-        .map(x =>
-          x match
-            case None        => div("Solver took too long to complete")
-            case Some(value) => renderHint(value)
-        )
+        .map {
+          case None => div("Solver took too long to complete")
+          case Some(value) => renderHint(value)
+        }
         .startWith(div("Calculating solution..."))
     )
   }

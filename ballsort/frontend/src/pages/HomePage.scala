@@ -34,8 +34,8 @@ case class HomePage(solverService: SolverService) {
     20 -> "lightpink"
   )
 
-  val DEFAULT_HEIGHT       = 5
-  val DEFAULT_COLORS_COUNT = 5
+  private val DEFAULT_HEIGHT       = 5
+  private val DEFAULT_COLORS_COUNT = 5
 
   def render = ZIO.attempt {
     val colors       = Var(DEFAULT_COLORS_COUNT)
